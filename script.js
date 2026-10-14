@@ -3,7 +3,7 @@ const SUPABASE_KEY = "sb_publishable_Mttjc-U-xVtUP9hYBblLdA_jQpHrUUN";//supabase
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const animalList = document.getElementById("animalList");//出力用の変数。animallistはindex.html参照
+const animalList = document.getElementById("animalList");//出力用の変数。animallistはanimalForm.html参照
 const animalForm = document.getElementById("animalForm");//動物登録用。()の中身は上と同様から参照
 const submitButton = document.getElementById("submitButton");
 const message = document.getElementById("message");
@@ -90,7 +90,7 @@ async function addAnimal(event) {
 }
 
 // イベント登録
-//index.htmlでの処理
+//animalForm.htmlでの処理
 if (animalForm) {
     animalForm.addEventListener("submit", addAnimal);
 }
