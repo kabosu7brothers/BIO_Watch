@@ -7,6 +7,7 @@ const test0_haruto = document.getElementById("animalList");//出力用の変数�
 const animalForm = document.getElementById("animalForm");//動物登録用。()の中身は上と同様から参照
 const submitButton = document.getElementById("submitButton");
 const message = document.getElementById("message");
+const tableName = "test0_haruto";
 
 // メッセージ表示(成功:緑 / 失敗:赤)、色や大きさはStyle.cssで変更可能
 function showMessage(text, isError = false) {
@@ -17,9 +18,7 @@ function showMessage(text, isError = false) {
 // 生物データを取得して表示(view.htmlでの処理)
 async function loadAnimals() {
     const { data, error } = await supabaseClient//await=この処理が終わるまで待って！
-        .from("test0_haruto")//どのデータベースから？→animal
-        .delete()
-        .eq("id", 1)
+        .from(tableName)//どのデータベースから？→animal
         .select();//どれを選ぶの？→*(全部)
 
     if (error) {//エラーが出たら？
@@ -71,7 +70,7 @@ async function addAnimal(event) {
     showMessage("登録中...");
 
     const { error } = await supabaseClient
-        .from("animal")
+        .from(tableName)
         .insert({
             name: name,
             area: area,
