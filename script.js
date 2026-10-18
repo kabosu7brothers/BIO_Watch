@@ -3,10 +3,11 @@ const SUPABASE_KEY = "sb_publishable_yW4Z8TyHfKHhQjV0g7SlnA_QAvBwkdP";//supabase
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const test0_haruto = document.getElementById("animalList");//出力用の変数。animallistはanimalForm.html参照
+const animalList = document.getElementById("animalList");//出力用の変数。animallistはanimalForm.html参照
 const animalForm = document.getElementById("animalForm");//動物登録用。()の中身は上と同様から参照
 const submitButton = document.getElementById("submitButton");
 const message = document.getElementById("message");
+const loadButton = document.getElementById("loadButton");
 const tableName = "test0_haruto";
 
 // メッセージ表示(成功:緑 / 失敗:赤)、色や大きさはStyle.cssで変更可能
