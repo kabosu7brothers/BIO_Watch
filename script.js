@@ -19,7 +19,7 @@ function showMessage(text, isError = false) {
 async function loadAnimals() {
     const { data, error } = await supabaseClient//await=この処理が終わるまで待って！
         .from(tableName)//どのデータベースから？→animal
-        .select();//どれを選ぶの？→*(全部)
+        .select('*');//どれを選ぶの？→*(全部)
 
     if (error) {//エラーが出たら？
         console.error(error);
@@ -69,26 +69,38 @@ async function addAnimal(event) {
     submitButton.disabled = true; // 二重送信を防ぐ
     showMessage("登録中...");
 
-    const { error } = await supabaseClient
-        .from(tableName)
-        .insert({
-            id: 3,
-            name: name,
-            area: area,
-            description: description || null
-        });
-
-    submitButton.disabled = false;
-
-    if (error) {
+    const { data, error } = await supabaseClient//await=この処理が終わるまで待って！
+        .from(tableName)//どのデータベースから？→animal
+        .select('*')//どれを選ぶの？→*(全部)
+        .order("id", { ascending: false })
+        .limit(1);
+    if (!error) {
+        const { error2 } = await supabaseClient
+            .from(tableName)
+            .insert({
+                id: ,
+                name: name,
+                area: area,
+                description: description || null
+            });
+    
+        submitButton.disabled = false;
+    
+        if (error2) {
+            console.error(error2);
+            showMessage("登録に失敗しました: " + error2.message, true);
+            return;
+        }
+    
+        showMessage("登録しました!");
+        animalForm.reset();
+        loadAnimals(); // 登録後に一覧を更新
+    }
+    else {
         console.error(error);
         showMessage("登録に失敗しました: " + error.message, true);
         return;
     }
-
-    showMessage("登録しました!");
-    animalForm.reset();
-    loadAnimals(); // 登録後に一覧を更新
 }
 
 // イベント登録
