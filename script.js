@@ -1,4 +1,4 @@
-const SUPABASE_URL = "https://dlmaujcsjgapzszwxwhf.supabase.co/rest/v1/test0_haruto";//SupabaseのURL
+const SUPABASE_URL = "https://dlmaujcsjgapzszwxwhf.supabase.co/";//SupabaseのURL
 const SUPABASE_KEY = "sb_publishable_Mttjc-U-xVtUP9hYBblLdA_jQpHrUUN";//supabaseの公開鍵
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
