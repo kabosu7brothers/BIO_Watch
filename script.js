@@ -78,7 +78,7 @@ async function addAnimal(event) {
         const { error2 } = await supabaseClient
             .from(tableName)
             .insert({
-                id: ,
+                id: data[0].id + 1,
                 name: name,
                 area: area,
                 description: description || null
