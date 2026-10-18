@@ -69,39 +69,25 @@ async function addAnimal(event) {
     submitButton.disabled = true; // 二重送信を防ぐ
     showMessage("登録中...");
 
-    const { data, error } = await supabaseClient//await=この処理が終わるまで待って！
-        .from(tableName)//どのデータベースから？→animal
-        .select('*')//どれを選ぶの？→*(全部)
-        .order("id", { ascending: false })
-        .limit(1);
-    if (!error) {
-        const { error2 } = await supabaseClient
-            .from(tableName)
-            .insert({
-                id: data[0].id + 1,
-                name: name,
-                area: area,
-                description: description || null
-            });
-    
-        submitButton.disabled = false;
-    
-        if (error2) {
-            console.error(error2);
-            showMessage("登録に失敗しました: " + error2.message, true);
-            return;
-        }
-    
-        showMessage("登録しました!");
-        animalForm.reset();
-        loadAnimals(); // 登録後に一覧を更新
-    }
-    else {
+    const { error } = await supabaseClient
+        .from(tableName)
+        .insert({
+            name: name,
+            area: area,
+            description: description || null
+        });
+
+    submitButton.disabled = false;
+
+    if (error) {
         console.error(error);
         showMessage("登録に失敗しました: " + error.message, true);
         return;
     }
-}
+
+    showMessage("登録しました!");
+    animalForm.reset();
+    loadAnimals(); // 登録後に一覧を更新}
 
 // イベント登録
 //animalForm.htmlでの処理
