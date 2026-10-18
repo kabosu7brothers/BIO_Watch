@@ -88,6 +88,7 @@ async function addAnimal(event) {
     showMessage("登録しました!");
     animalForm.reset();
     loadAnimals(); // 登録後に一覧を更新}
+}
 
 // イベント登録
 //animalForm.htmlでの処理
