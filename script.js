@@ -19,7 +19,7 @@ async function loadAnimals() {
     const { data, error } = await supabaseClient//await=この処理が終わるまで待って！
         .from("test0_haruto")//どのデータベースから？→animal
         .delete()
-        .eq("id")
+        .eq("id", 1)
         .select("*");//どれを選ぶの？→*(全部)
 
     if (error) {//エラーが出たら？
