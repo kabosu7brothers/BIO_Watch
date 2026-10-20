@@ -1,9 +1,9 @@
-const SUPABASE_URL = "https://sdorkxwgzdynyjnkmpzi.supabase.co";//SupabaseのURL
-const SUPABASE_KEY = "sb_publishable_Mttjc-U-xVtUP9hYBblLdA_jQpHrUUN";//supabaseの公開鍵
+const SUPABASE_URL = "https://dlmaujcsjgapzszwxwhf.supabase.co";//SupabaseのURL
+const SUPABASE_KEY = "sb_publishable_yW4Z8TyHfKHhQjV0g7SlnA_QAvBwkdP";//supabaseの公開鍵
 
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-const animalList = document.getElementById("animalList");//出力用の変数。animallistはanimalForm.html参照
+const animalList = document.getElementById("animalList");//出力用の変数。animallistはindex.html参照
 const animalForm = document.getElementById("animalForm");//動物登録用。()の中身は上と同様から参照
 const submitButton = document.getElementById("submitButton");
 const message = document.getElementById("message");
@@ -17,12 +17,15 @@ function showMessage(text, isError = false) {
 // 生物データを取得して表示(view.htmlでの処理)
 async function loadAnimals() {
     const { data, error } = await supabaseClient//await=この処理が終わるまで待って！
-        .from("animal")//どのデータベースから？→animal
-        .select("*");//どれを選ぶの？→*(全部)
+        .from("yukino")//どのデータベースから？→animal
+        .delete()
+        .eq("id",1)
+        .select();//どれを選ぶの？→*(全部)
 
     if (error) {//エラーが出たら？
         console.error(error);
         alert("データ取得に失敗しました: " + error.message);
+        console.log(data)
         return;
     }
 
@@ -56,7 +59,7 @@ async function loadAnimals() {
 async function addAnimal(event) {
     event.preventDefault(); // ページの再読み込みを防ぐ
 
-    const name = document.getElementById("nameInput").value.trim();
+    const id = document.getElementById("nameInput").value.trim();
     const area = document.getElementById("areaInput").value.trim();
     const description = document.getElementById("descriptionInput").value.trim();
 
@@ -69,7 +72,7 @@ async function addAnimal(event) {
     showMessage("登録中...");
 
     const { error } = await supabaseClient
-        .from("animal")
+        .from("yukino")
         .insert({
             name: name,
             area: area,
@@ -90,7 +93,7 @@ async function addAnimal(event) {
 }
 
 // イベント登録
-//animalForm.htmlでの処理
+//index.htmlでの処理
 if (animalForm) {
     animalForm.addEventListener("submit", addAnimal);
 }

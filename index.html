@@ -6,22 +6,30 @@
     <title>BIOWatch</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <h1>BIOWatch</h1>
         <p>生物多様性を知り、つなげ、未来のアイデアへ</p>
     </header>
     <main>
-        <button type="button" id="goToAnimalFormButton">animalFormへ</button>
-        <button type="button" id="goToViewButton">viewへ</button>
-        
-        <script>
-            document.getElementById("goToAnimalFormButton").addEventListener("click", () => {
-                location.href = ".\\animalForm.html";
-            });
-            document.getElementById("goToViewButton").addEventListener("click", () => {
-                location.href = ".\\view.html";
-            });
-        </script>
+        <a href="./view.html">出力画面へ</a>
+        <a href=./input.html>入力画面へ</a>
+        <h2>ユーザー登録・ログイン</h2>
+        <form id="userlogin"><!入力フォーム>
+            <label>
+                名前(必須)
+                <input type="text" id="usernameIn" required><!テキスト入力欄。requiredで入力必須にできる>
+            </label>
+            <label>
+                パスワード(必須)
+                <input type="text" id="pass" required><!テキスト入力欄。requiredで入力必須にできる>
+            </label>
+            <button type="submit" id="submitButton">登録する</button>
+            <p id="message"></p><!id=メッセージとして登録された文字が表示される>
+        </form>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><!SupabaseのURL>
+    <script src="script.js"></script>
 </body>
+</html>
