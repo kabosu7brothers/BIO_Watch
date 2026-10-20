@@ -59,7 +59,7 @@ async function loadAnimals() {
 async function addAnimal(event) {
     event.preventDefault(); // ページの再読み込みを防ぐ
 
-    const id = document.getElementById("nameInput").value.trim();
+    const name = document.getElementById("nameInput").value.trim();
     const area = document.getElementById("areaInput").value.trim();
     const description = document.getElementById("descriptionInput").value.trim();
 
