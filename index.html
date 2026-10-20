@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIOWatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>BIOWatch</h1>
+        <p>生物多様性を知り、つなげ、未来のアイデアへ</p>
+    </header>
+    <main>
+        <button type="button" id="goToAnimalFormButton">animalFormへ</button>
+        <button type="button" id="goToViewButton">viewへ</button>
+        
+        <script>
+            document.getElementById("goToAnimalFormButton").addEventListener("click", () => {
+                location.href = ".\\animalForm.html";
+            });
+            document.getElementById("goToViewButton").addEventListener("click", () => {
+                location.href = ".\\view.html";
+            });
+        </script>
+    </main>
+</body>
